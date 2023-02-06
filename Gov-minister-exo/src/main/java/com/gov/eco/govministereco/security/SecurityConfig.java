@@ -36,7 +36,7 @@ public class SecurityConfig {
 
             http
                     .authorizeHttpRequests()
-                    .requestMatchers(HttpMethod.POST, "/api/v1/recruiter/**")
+                    .requestMatchers(HttpMethod.POST, "/api/v1/admin/auth/**")
                     .permitAll();
 //                    .requestMatchers("/api/v1/recruiter/create")
 //                    .permitAll()

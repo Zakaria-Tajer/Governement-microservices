@@ -1,6 +1,8 @@
 package com.gov.eco.govministereco.security;
 
 
+import com.gov.eco.govministereco.domains.EcoMinisterAdmin;
+import com.gov.eco.govministereco.repository.AdminRespository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,43 +16,20 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.Optional;
+
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfig {
 
 
-//    private final RecruiterRepository recruiterRepository;
-//    private final AgentRepository agentRepository;
+    private final AdminRespository adminRespository;
 
     @Bean
     public UserDetailsService userDetailsService(){
 
-//        return username -> recruiterRepository.findByEmail(username)
-//                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-        return new UserDetailsService(){
-
-            @Override
-            public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//                Optional<Recruiter> recruiter = recruiterRepository.findByEmail(username);
-
-                return null;
-//
-//                if(recruiter.isEmpty()){
-//                    System.out.println(recruiter + "noroor");
-//                    return agentRepository.getAgentByEmail(username)
-//                            .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-//                }else {
-//                    System.out.println(recruiter + "ues");
-//
-//                    return recruiterRepository.findByEmail(username)
-//                            .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-//                }
-
-            }
-
-        };
-//        return username -> agentRepository.getAgentByEmail(username)
-//                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        return username -> adminRespository.findAdminByEmail(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
     @Bean
