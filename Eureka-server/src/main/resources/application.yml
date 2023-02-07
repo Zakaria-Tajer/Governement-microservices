@@ -1,0 +1,13 @@
+spring.application.name=eureka-server
+server.port=8761
+eureka.client.fetch-registry=false
+eureka.instance.environment=dev
+eureka.client.register-with-eureka=false
+#eureka.instance.hostname=localhost
+#eureka.dashboard.path=/dashboard
+#spring.freemarker.template-loader-path= classpath:/templates/
+#spring.freemarker.prefer-file-system-access= false
+#
+#logging.level.com.netflix.eureka=OFF
+#logging.level.com.netflix.discovery=OFF
+#eureka.client.service-url.defaultZone=http://localhost:8761/eureka

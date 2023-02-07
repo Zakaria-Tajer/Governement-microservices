@@ -10,7 +10,7 @@
   <properties>
     <slf4j.version>1.7.30</slf4j.version>
     <spring-data-releasetrain.version>Moore-SR6</spring-data-releasetrain.version>
-    <spring.cloud-version>2020.0.3</spring.cloud-version>
+    <spring.cloud-version>2022.0.1</spring.cloud-version>
     <maven.compiler.source>19</maven.compiler.source>
     <maven.compiler.target>19</maven.compiler.target>
   </properties>
@@ -21,6 +21,8 @@
     <module>Eureka-server</module>
   </modules>
   <packaging>pom</packaging>
+
+
 
   <dependencyManagement>
     <dependencies>
