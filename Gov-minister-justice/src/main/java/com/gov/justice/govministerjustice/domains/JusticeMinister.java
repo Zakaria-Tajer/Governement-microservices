@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,16 +13,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-@Entity
+@Document
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 public class JusticeMinister implements UserDetails {
 
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int justiceMinisterId;
+    private String justiceMinisterId;
     private String firstName;
     private String lastName;
     private String email;
