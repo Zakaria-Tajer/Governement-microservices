@@ -7,10 +7,37 @@
   <name>Archetype - gov-m</name>
   <url>http://maven.apache.org</url>
 
+  <properties>
+    <slf4j.version>1.7.30</slf4j.version>
+    <spring-data-releasetrain.version>Moore-SR6</spring-data-releasetrain.version>
+    <spring.cloud-version>2020.0.3</spring.cloud-version>
+    <maven.compiler.source>19</maven.compiler.source>
+    <maven.compiler.target>19</maven.compiler.target>
+  </properties>
 
   <modules>
     <module>Gov-minister-exo</module>
     <module>Gov-minister-justice</module>
+    <module>Eureka-server</module>
   </modules>
   <packaging>pom</packaging>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring.cloud-version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>3.0.2</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 </project>

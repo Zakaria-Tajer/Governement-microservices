@@ -33,7 +33,6 @@ public class AdminServiceImp implements AdminService {
     @Override
     public ResponseEntity<JusticeMinister> registerAdmin(JusticeMinister ecoMinisterAdmin) {
         ecoMinisterAdmin.setPassword(applicationConfig.passwordEncoder().encode(ecoMinisterAdmin.getPassword()));
-//
         return ResponseEntity.ok().body(adminJusticeRepository.save(ecoMinisterAdmin));
     }
 
