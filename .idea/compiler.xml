@@ -12,8 +12,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Gov-minister-justice" />
-        <module name="Eureka-server" />
         <module name="Gov-minister-eco" />
+        <module name="clients" />
+        <module name="Eureka-server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -21,6 +22,7 @@
       <module name="eureka-server" target="1.5" />
       <module name="gov-m (1)" target="19" />
       <module name="gov-m (2)" target="19" />
+      <module name="Governement-microservices" target="19" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

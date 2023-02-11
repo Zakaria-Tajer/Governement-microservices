@@ -19,6 +19,7 @@
     <module>Gov-minister-exo</module>
     <module>Gov-minister-justice</module>
     <module>Eureka-server</module>
+      <module>clients</module>
   </modules>
   <packaging>pom</packaging>
 

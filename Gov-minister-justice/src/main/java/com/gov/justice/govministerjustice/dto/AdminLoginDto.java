@@ -2,8 +2,7 @@ package com.gov.justice.govministerjustice.dto;
 
 
 import com.gov.justice.govministerjustice.enums.Roles;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -15,7 +14,7 @@ public class AdminLoginDto {
     private String lastName;
     private String email;
     private String password;
-    @Enumerated(EnumType.STRING)
+//    @Enumerated(EnumType.STRING)
     private Roles role;
 
 }

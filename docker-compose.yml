@@ -39,9 +39,25 @@ services:
       - ME_CONFIG_BASICAUTH_PASSWORD=pass
       - ME_CONFIG_MONGODB_SERVER=mongodb
 
+
+  es01:
+    container_name: elastic-search
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.6.1
+    ports:
+      - 9200:9200
+    restart: always
+    environment:
+      - xpack.security.enabled=false
+      - discovery.type=single-node
+    volumes:
+      - elasticsearch-data-volume:/usr/share/elasticsearch/data
+
+
 volumes:
   my-db:
   data: {}
+  elasticsearch-data-volume:
+    driver: local
 
 
 networks:

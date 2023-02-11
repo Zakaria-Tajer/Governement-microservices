@@ -22,7 +22,7 @@ public class AdminController {
     private final AdminServiceImp adminServiceImp;
 
     @PostMapping("/auth/register")
-    public ResponseEntity<JusticeMinister> adminRegistration(@RequestBody JusticeMinister justiceMinister){
+    public ResponseEntity<JusticeMinister> adminRegistration(@RequestBody JusticeMinister justiceMinister) {
         return ResponseEntity.ok().body(
                 adminServiceImp.registerAdmin(justiceMinister).getBody()
         );

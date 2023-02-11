@@ -22,7 +22,7 @@ public class ApplicationConfig {
 
 
 
-    private final AdminJusticeRepository justiceRepository;
+    private AdminJusticeRepository justiceRepository;
 
 
     @Bean
