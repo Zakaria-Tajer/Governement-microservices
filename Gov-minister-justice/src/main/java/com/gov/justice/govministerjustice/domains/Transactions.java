@@ -5,23 +5,28 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.util.Date;
+import java.util.List;
 
 @Document(indexName = "transactions")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 public class Transactions {
 
     @Id
-    private int transactionId;
-
+    @Field(type = FieldType.Keyword)
+    private String transactionId;
+    @Field(type = FieldType.Text)
     private String transactionName;
-
+    @Field(type = FieldType.Text)
     private String transactionDescription;
-
-    private JusticeMinister justiceMinister;
+    @Field(type = FieldType.Object)
+    private List<JusticeMinister> justiceMinister;
+    @Field(type = FieldType.Object)
     private Departement departementTransactions;
+    @Field(type = FieldType.Date)
     private Date transactionDate;
 }

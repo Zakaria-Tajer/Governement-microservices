@@ -14,7 +14,6 @@ public class AdminLoginDto {
     private String lastName;
     private String email;
     private String password;
-//    @Enumerated(EnumType.STRING)
     private Roles role;
 
 }

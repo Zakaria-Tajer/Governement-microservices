@@ -82,6 +82,8 @@ public class AdminServiceImp implements AdminService {
 
         }
 
+        log.info("admin " + admin.get().getPassword() + " " +  loginDto.getPassword());
+
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginDto.getEmail(),

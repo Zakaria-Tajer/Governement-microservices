@@ -1,5 +1,6 @@
 package com.gov.justice.govministerjustice.domains;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gov.justice.govministerjustice.enums.Roles;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,7 +23,7 @@ public class JusticeMinister implements UserDetails {
 
     @Id
     @Field(type = FieldType.Keyword)
-    private String justiceMinisterId;
+    private String id;
     @Field(type = FieldType.Text)
     private String firstName;
     @Field(type = FieldType.Text)
@@ -35,7 +36,7 @@ public class JusticeMinister implements UserDetails {
     private Roles role;
 
     @Field(type = FieldType.Nested)
-
+//    @JsonIgnore
     private List<Departement> departements;
 
     @Override

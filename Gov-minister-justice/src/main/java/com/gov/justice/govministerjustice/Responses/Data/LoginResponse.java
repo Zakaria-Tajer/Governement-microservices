@@ -1,4 +1,4 @@
-package com.gov.justice.govministerjustice.Responses;
+package com.gov.justice.govministerjustice.Responses.Data;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
