@@ -25,8 +25,8 @@ public class SecurityConfig {
 
 
 
-//        private final JwtAuthenticationFilter jwtAuthFilter;
-//        private final AuthenticationProvider authenticationProvider;
+        private final JwtAuthenticationFilter jwtAuthFilter;
+        private final AuthenticationProvider authenticationProvider;
 
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -36,22 +36,16 @@ public class SecurityConfig {
 
             http
                     .authorizeHttpRequests()
-                    .requestMatchers(HttpMethod.POST, "/api/v1/admin/auth/**")
-                    .permitAll();
-//                    .requestMatchers("/api/v1/recruiter/create")
-//                    .permitAll()
-//                    .requestMatchers(HttpMethod.POST,"/api/v1/agent/**")
-//                    .permitAll()
-//                    .requestMatchers("/api/v1/offers/**")
-//                    .authenticated()
-//                    .anyRequest()
-//                    .authenticated()
-//                    .and()
-//                    .sessionManagement()
-//                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                    .and()
-//                    .authenticationProvider(authenticationProvider)
-//                    .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+                    .requestMatchers( "/api/v1/admin/**")
+                    .permitAll()
+                    .anyRequest()
+                    .authenticated()
+                    .and()
+                    .sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                    .and()
+                    .authenticationProvider(authenticationProvider)
+                    .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
 //
 

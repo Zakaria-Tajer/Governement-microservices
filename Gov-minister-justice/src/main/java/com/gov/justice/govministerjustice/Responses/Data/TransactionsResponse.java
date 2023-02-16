@@ -1,5 +1,6 @@
 package com.gov.justice.govministerjustice.Responses.Data;
 
+import com.gov.justice.govministerjustice.domains.Transactions;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,5 +14,5 @@ public class TransactionsResponse {
     private Date timestamp;
     private int statusCode;
     private String message;
-    private TransactionDataResponse transactionData;
+    private Transactions transactionData;
 }

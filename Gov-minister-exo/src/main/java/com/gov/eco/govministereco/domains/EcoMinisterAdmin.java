@@ -30,9 +30,10 @@ public class EcoMinisterAdmin implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Roles role;
 
-    @OneToMany(mappedBy = "ecoMinisterAdmin", fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
     private List<Departement> departements;
-
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<ForeignMinisters> foreignMinisters;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));

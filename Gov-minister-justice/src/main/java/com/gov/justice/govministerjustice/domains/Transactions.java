@@ -23,10 +23,6 @@ public class Transactions {
     private String transactionName;
     @Field(type = FieldType.Text)
     private String transactionDescription;
-    @Field(type = FieldType.Object)
-    private List<JusticeMinister> justiceMinister;
-    @Field(type = FieldType.Object)
-    private Departement departementTransactions;
     @Field(type = FieldType.Date)
     private Date transactionDate;
 }

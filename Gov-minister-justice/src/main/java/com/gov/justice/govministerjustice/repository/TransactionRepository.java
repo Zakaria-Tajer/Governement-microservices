@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TransactionRepository extends ElasticsearchRepository<Transactions, String> {
+
+    Transactions getTransactionsByTransactionId(String transactionId);
 }

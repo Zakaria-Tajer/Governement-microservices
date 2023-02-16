@@ -1,11 +1,11 @@
 package com.gov.justice.govministerjustice.controllers;
 
+import com.gov.clients.ecoMinister.MinisterDto;
 import com.gov.justice.govministerjustice.Responses.Data.LoginResponse;
-import com.gov.justice.govministerjustice.domains.Departement;
 import com.gov.justice.govministerjustice.domains.JusticeMinister;
 import com.gov.justice.govministerjustice.dto.AddDepratementDto;
 import com.gov.justice.govministerjustice.dto.AdminLoginDto;
-import com.gov.justice.govministerjustice.dto.DepartementDto;
+import com.gov.justice.govministerjustice.repository.AdminJusticeRepository;
 import com.gov.justice.govministerjustice.services.Admin.AdminServiceImp;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/justiceAdmin")
@@ -21,15 +22,14 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class AdminController {
 
-
     private final AdminServiceImp adminServiceImp;
-
-
     @GetMapping("/auth/getAllAdmins")
-    public  ResponseEntity<Page<JusticeMinister>> getALllAdmins() {
-        return ResponseEntity.ok().body(
-                adminServiceImp.getAllAdmins()
-        );
+    public List<MinisterDto> getALllAdmins() {
+        return adminServiceImp.getAllAdmins();
+    }
+    @GetMapping("/hello")
+    public  String hello() {
+        return "hello";
     }
 
     @PostMapping("/auth/register")

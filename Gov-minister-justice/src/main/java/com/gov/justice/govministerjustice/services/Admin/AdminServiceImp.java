@@ -1,6 +1,8 @@
 package com.gov.justice.govministerjustice.services.Admin;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gov.clients.ecoMinister.DepartementDto;
+import com.gov.clients.ecoMinister.MinisterDto;
+import com.gov.clients.ecoMinister.TransactionsDto;
 import com.gov.justice.govministerjustice.Responses.Data.DepartementResponse;
 import com.gov.justice.govministerjustice.Responses.Data.LoginResponse;
 import com.gov.justice.govministerjustice.Responses.Responses;
@@ -17,21 +19,7 @@ import com.gov.justice.govministerjustice.security.JwtService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import org.apache.http.HttpHost;
-import org.elasticsearch.action.bulk.BulkRequest;
-import org.elasticsearch.action.index.IndexRequest;
-import org.elasticsearch.action.update.UpdateRequest;
-import org.elasticsearch.action.update.UpdateResponse;
-import org.elasticsearch.client.IndicesClient;
-import org.elasticsearch.client.RequestOptions;
-import org.elasticsearch.client.RestClient;
-import org.elasticsearch.client.RestHighLevelClient;
-import org.elasticsearch.client.indices.PutMappingRequest;
-import org.elasticsearch.script.Script;
-import org.elasticsearch.script.ScriptType;
-import org.elasticsearch.xcontent.XContentType;
-import org.json.JSONObject;
-import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 
@@ -41,8 +29,6 @@ import java.io.IOException;
 import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
-
-import static org.elasticsearch.xcontent.XContentFactory.jsonBuilder;
 
 
 @Service
@@ -57,12 +43,41 @@ public class AdminServiceImp implements AdminService {
     private final Responses responses;
     private final AuthenticationManager authenticationManager;
 
-    private final ObjectMapper objectMapper;
-    private final RestHighLevelClient client;
 
     @Override
-    public Page<JusticeMinister> getAllAdmins() {
-        return (Page<JusticeMinister>) adminJusticeRepository.findAll();
+    public List<MinisterDto> getAllAdmins() {
+        List<JusticeMinister> d =  adminJusticeRepository.findAll(PageRequest.of(0, 10)).toList();
+
+//        return null;
+        return  d.stream().map(
+                minsister ->
+                        new MinisterDto(
+                                minsister.getId(),
+                                minsister.getFirstName(),
+                                minsister.getLastName(),
+                                minsister.getEmail(),
+                                minsister.getPassword(),
+                                minsister.getRole().name(),
+                                minsister.getDepartements() != null ?
+                                        minsister.getDepartements().stream().map(
+                                                departement -> new DepartementDto(
+                                                        departement.getDepartementId(),
+                                                        departement.getDepartmentName(),
+                                                        departement.getDepartmentJob(),
+                                                        departement.getTransactions().stream().map(
+                                                        transactions -> new TransactionsDto(
+                                                                transactions.getTransactionId(),
+                                                                transactions.getTransactionName(),
+                                                                transactions.getTransactionDescription(),
+                                                                transactions.getTransactionDate()
+                                                        )
+                                                ).collect(Collectors.toList())
+                                                )
+                                        ).collect(Collectors.toList())
+                                : null
+
+                        )
+        ).collect(Collectors.toList());
     }
 
 
@@ -179,13 +194,10 @@ public class AdminServiceImp implements AdminService {
         }
         Optional<JusticeMinister> admin = adminJusticeRepository.findByEmail(departement.getPersonsEmail());
 
-        log.info("admin lookup hit " + admin.get());
 
         if (admin.isPresent()) {
             if (admin.get().getRole().equals(Roles.EMPLOYEE)
                     && admin.get().getDepartements() != null) {
-
-                log.info("emplooye lookup hit");
 
                 return
                         responses
@@ -212,8 +224,9 @@ public class AdminServiceImp implements AdminService {
             );
 
 
-                admin.get().setDepartements(List.of(departementData));
-                adminJusticeRepository.save(admin.get());
+            admin.get().setDepartements(List.of(departementData));
+            adminJusticeRepository.save(admin.get());
+
 
 
             return ResponseEntity.ok().body(
@@ -243,6 +256,7 @@ public class AdminServiceImp implements AdminService {
                                 )
         );
     }
+
 
 
 }

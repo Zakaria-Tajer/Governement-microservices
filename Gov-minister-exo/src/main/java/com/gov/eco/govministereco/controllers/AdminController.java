@@ -1,6 +1,7 @@
 package com.gov.eco.govministereco.controllers;
 
 
+import com.gov.clients.ecoMinister.MinisterDto;
 import com.gov.eco.govministereco.Responses.LoginResponse;
 import com.gov.eco.govministereco.domains.EcoMinisterAdmin;
 import com.gov.eco.govministereco.dto.AdminLoginDto;
@@ -8,10 +9,9 @@ import com.gov.eco.govministereco.services.Admin.AdminServiceImp;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/admin")
@@ -32,6 +32,11 @@ public class AdminController {
     @PostMapping("/auth/login")
     public ResponseEntity<LoginResponse> loginAdmin(@RequestBody AdminLoginDto loginDto){
         return adminServiceImp.loginAdmin(loginDto);
+    }
+
+    @GetMapping("/allAdmins")
+    public List<MinisterDto> admins(){
+        return adminServiceImp.getAdmins();
     }
 
 }

@@ -23,7 +23,5 @@ public class Departement {
     private String departmentJob;
     @Field(type = FieldType.Nested)
     private List<Transactions> transactions;
-//    @Field(type = FieldType.Nested)
-//    private List<JusticeMinister> personsList;
 
 }

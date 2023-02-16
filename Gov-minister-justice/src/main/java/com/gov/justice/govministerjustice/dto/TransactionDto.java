@@ -9,10 +9,10 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 public class TransactionDto {
-
     private String transactionName;
     private String transactionDescription;
     private String AdminEmail;
     private String departementTransactionsName;
     private Date transactionDate;
+
 }

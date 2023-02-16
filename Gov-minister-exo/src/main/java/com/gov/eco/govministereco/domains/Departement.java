@@ -22,13 +22,9 @@ public class Departement{
     private String departmentName;
     private String departmentJob;
 
-    @OneToMany(mappedBy = "departementTransactions", cascade = CascadeType.ALL)
-//    @JoinColumn(name = "departmentTransaction", referencedColumnName = "departementTransactions")
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Transactions> transactions;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ecoMinsiterId", referencedColumnName = "ministerId")
-//    @JsonIgnore
-    private EcoMinisterAdmin ecoMinisterAdmin;
+
 
 }

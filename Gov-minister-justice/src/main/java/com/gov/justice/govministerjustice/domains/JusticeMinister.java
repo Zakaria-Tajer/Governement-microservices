@@ -1,6 +1,5 @@
 package com.gov.justice.govministerjustice.domains;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gov.justice.govministerjustice.enums.Roles;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,7 +7,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
-import org.springframework.data.elasticsearch.annotations.Setting;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -36,7 +34,6 @@ public class JusticeMinister implements UserDetails {
     private Roles role;
 
     @Field(type = FieldType.Nested)
-//    @JsonIgnore
     private List<Departement> departements;
 
     @Override
